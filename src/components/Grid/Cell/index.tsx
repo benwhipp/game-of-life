@@ -17,7 +17,7 @@ export const Cell = ({ alive, updateCell }: CellProps) => {
       }}
     >
       <div
-        className={`duration-50 drop-shadow-glow z-10 h-full w-full overflow-visible rounded-sm transition-all ${
+        className={`duration-50 z-10 h-full w-full overflow-visible rounded-sm transition-all ${
           alive
             ? "bg-yellow-300 group-hover:bg-red-400"
             : "bg-gray-700 group-hover:bg-yellow-100"
