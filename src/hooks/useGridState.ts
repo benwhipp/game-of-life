@@ -5,12 +5,13 @@ export type RowType = boolean[] & { length: 64 };
 export type GridType = RowType[] & { length: 64 };
 
 export const useGridState = () => {
-  const [grid, setGridState] = useState(
+  const [grid, setGridState] = useState<GridType>(
     [...Array(64)].map(() => [...Array(64)].map(() => false)) as GridType,
   );
   const [playing, setPlaying] = useState(false);
 
   const advanceGrid = useCallback(() => {
+    // @ts-expect-error - Stupid TS
     setGridState((grid) => {
       const newGrid = grid.map((row, i) =>
         row.map((cell, j) => {
@@ -38,6 +39,7 @@ export const useGridState = () => {
   }, []);
 
   const updateCell = useCallback((i: number, j: number) => {
+    // @ts-expect-error - Stupid TS
     setGridState((grid) => {
       const newGrid = grid.map((row, rowIndex) =>
         row.map((cell, cellIndex) => {
@@ -54,6 +56,7 @@ export const useGridState = () => {
   }, []);
 
   const randomizeGrid = useCallback(() => {
+    // @ts-expect-error - Stupid TS
     setGridState((grid) => {
       const newGrid = grid.map((row) => row.map(() => Math.random() > 0.5));
 
@@ -62,6 +65,7 @@ export const useGridState = () => {
   }, []);
 
   const resetGrid = useCallback((alive: boolean) => {
+    // @ts-expect-error - Stupid TS
     setGridState((grid) => {
       const newGrid = grid.map((row) => row.map(() => alive));
 
