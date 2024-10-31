@@ -6,7 +6,8 @@ import { Button } from "@/components/Button";
 import { Cell } from "@/components/Grid/Cell";
 
 const Home = () => {
-  const { grid, playing, setPlaying, updateCell, resetGrid } = useGridState();
+  const { grid, playing, setPlaying, updateCell, resetGrid, randomizeGrid } =
+    useGridState();
   const [resetAlive, setResetAlive] = useState(false);
 
   return (
@@ -28,6 +29,7 @@ const Home = () => {
             <label>Set all {}</label>
           </div>
         </div>
+        <Button onClick={randomizeGrid}>Randomise</Button>
       </div>
       <Grid grid={grid} updateCell={updateCell} />
     </div>

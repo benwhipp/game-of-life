@@ -71,7 +71,7 @@ export const useGridState = () => {
 
   useEffect(() => {
     if (playing) {
-      const interval = setInterval(advanceGrid, 500);
+      const interval = setInterval(advanceGrid, 100);
       return () => clearInterval(interval);
     }
   }, [playing, advanceGrid]);
