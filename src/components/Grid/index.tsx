@@ -1,5 +1,5 @@
 "use client";
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import { type GridType } from "@/hooks/useGridState";
 import { Cell } from "@/components/Grid/Cell";
 
@@ -8,7 +8,7 @@ interface GridProps {
   updateCell: (i: number, j: number) => void;
 }
 
-export const Grid = ({ grid, updateCell }: GridProps) => {
+export const Grid = memo(({ grid, updateCell }: GridProps) => {
   return (
     <div className="grid h-[100vmin] w-[100vmin] grid-cols-[repeat(64,minmax(0,1fr))] border-2 border-gray-500">
       {grid.map((row, i) => (
@@ -24,4 +24,4 @@ export const Grid = ({ grid, updateCell }: GridProps) => {
       ))}
     </div>
   );
-};
+});

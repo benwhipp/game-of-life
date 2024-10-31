@@ -6,7 +6,7 @@ export type GridType = Row[] & { length: 64 };
 
 export const useGridState = () => {
   const [grid, setGridState] = useState(
-    [...Array(64)].map(() => [...Array(64)].map(() => false)) as Grid
+    [...Array(64)].map(() => [...Array(64)].map(() => false)) as Grid,
   );
   const [playing, setPlaying] = useState(false);
 
@@ -30,7 +30,7 @@ export const useGridState = () => {
           } else {
             return neighbors === 3;
           }
-        })
+        }),
       );
 
       return newGrid;
@@ -46,8 +46,24 @@ export const useGridState = () => {
           } else {
             return cell;
           }
-        })
+        }),
       );
+
+      return newGrid;
+    });
+  }, []);
+
+  const randomizeGrid = useCallback(() => {
+    setGridState((grid) => {
+      const newGrid = grid.map((row) => row.map(() => Math.random() > 0.5));
+
+      return newGrid;
+    });
+  }, []);
+
+  const resetGrid = useCallback((alive: boolean) => {
+    setGridState((grid) => {
+      const newGrid = grid.map((row) => row.map(() => alive));
 
       return newGrid;
     });
@@ -55,10 +71,10 @@ export const useGridState = () => {
 
   useEffect(() => {
     if (playing) {
-      const interval = setInterval(advanceGrid, 1000);
+      const interval = setInterval(advanceGrid, 500);
       return () => clearInterval(interval);
     }
   }, [playing, advanceGrid]);
 
-  return { grid, playing, setPlaying, updateCell };
+  return { grid, playing, setPlaying, updateCell, randomizeGrid, resetGrid };
 };
