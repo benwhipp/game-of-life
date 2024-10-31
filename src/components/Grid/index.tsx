@@ -8,12 +8,12 @@ interface GridProps {
   updateCell: (i: number, j: number) => void;
 }
 
-export const Grid = memo(({ grid, updateCell }: GridProps) => {
+const GridComponent = ({ grid, updateCell }: GridProps) => {
   return (
     <div className="grid h-[100vmin] w-[100vmin] grid-cols-[repeat(64,minmax(0,1fr))] border-2 border-gray-500">
       {grid.map((row, i) => (
         <Fragment key={`row-${i}`}>
-          {row.map((cell, j) => (
+          {row.map((cell: boolean, j: number) => (
             <Cell
               alive={cell}
               updateCell={() => updateCell(i, j)}
@@ -24,4 +24,6 @@ export const Grid = memo(({ grid, updateCell }: GridProps) => {
       ))}
     </div>
   );
-});
+};
+
+export const Grid = memo(GridComponent);

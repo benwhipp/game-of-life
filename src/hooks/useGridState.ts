@@ -2,11 +2,11 @@
 import { useState, useCallback, useEffect } from "react";
 
 export type RowType = boolean[] & { length: 64 };
-export type GridType = Row[] & { length: 64 };
+export type GridType = RowType[] & { length: 64 };
 
 export const useGridState = () => {
   const [grid, setGridState] = useState(
-    [...Array(64)].map(() => [...Array(64)].map(() => false)) as Grid,
+    [...Array(64)].map(() => [...Array(64)].map(() => false)) as GridType,
   );
   const [playing, setPlaying] = useState(false);
 

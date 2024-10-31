@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <div className="size-screen flex items-center justify-center gap-8 bg-gray-800">
       <div className="flex flex-col gap-4">
-        <h1>Conway's Game of Life</h1>
+        <h1>Conway&apos;s Game of Life</h1>
         <Button onClick={() => setPlaying(!playing)}>
           {playing ? "Stop" : "Start"}
         </Button>
